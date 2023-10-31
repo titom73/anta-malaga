@@ -1,0 +1,36 @@
+---
+CVP_DEVICES_INIT:
+  - fqdn: s1-spine1
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-spine1
+  - fqdn: s1-spine2
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-spine2
+  - fqdn: s1-leaf1
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-leaf1
+  - fqdn: s1-leaf2
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-leaf2
+  - fqdn: s1-leaf3
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-leaf3
+  - fqdn: s1-leaf4
+    parentContainerName: STAGING
+    configlets:
+      - BASE_s1-leaf4
+
+CVP_CONTAINERS_INIT:
+  STAGING:
+    parentContainerName: Tenant
+
+CVP_CONTAINERS_DELETE:
+  S1-Leaf:
+    parentContainerName: Tenant
+  S1-Spine:
+    parentContainerName: Tenant

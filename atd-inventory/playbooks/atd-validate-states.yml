@@ -1,0 +1,13 @@
+---
+- name: "Run Fabric states validation"
+  hosts: ATD_FABRIC
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+  vars:
+    use_anta: True
+  tasks:
+    - name: Deploy configuration to device
+      import_role:
+        name: arista.avd.eos_validate_state
