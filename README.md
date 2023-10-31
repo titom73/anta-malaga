@@ -4,10 +4,6 @@ __WIP__ - Documentation is not accurate anymore! Please update it !
 
 This repository is built to support demo about how to use [Arista Network Testing Automation](https://www.anta.ninja) framework.
 
-Repository is based on [containerlab](https://containerlab.dev/) for lab management, [eos-download](https://github.com/titom73/eos-downloader) for cEOS image management
-
-[Installation process](./docs/installation.md) is provided in this page. If required, your can [build your VM for the demo](vm-builder/README.md) on GCP or AWS using this terraform content.
-
 ## Available demo
 
 > **Note**
