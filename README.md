@@ -22,8 +22,12 @@ Repository is based on [containerlab](https://containerlab.dev/) for lab managem
 
 ## Authentication
 
-- Username: __ansible__ (password: `ansible`)
-- Username: __arista__ (password: `arista`)
+- Username: __arista__ (password: `atd generated password`)
+
+```bash
+export LABPASSPHRASE=`cat /home/coder/.config/code-server/config.yaml| grep "password:" | awk '{print $2}'`
+export ARISTA_AVD_DIR=$(ansible-galaxy collection list arista.avd --format yaml | head -1
+```
 
 ## Management IPs
 
