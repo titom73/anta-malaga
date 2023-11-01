@@ -14,7 +14,7 @@ style: |
     }
     h1 {
       font-size: 50px;
-      color: #09c;
+      color: #5087b9;
     }
 
     img[alt~="custom"] {
@@ -26,11 +26,13 @@ style: |
       gap: 1rem;
     }
     footer {
-      font-family: Brush Script MT;
-      font-size: 14px;
+      #font-family: Brush Script MT;
+      color: #5087b9;
+      font-size: 10px;
     }
     section {
       color: #000000;
+      font-size: 14px;
     }
     section::after {
       font-family: Brush Script MT;
@@ -45,9 +47,11 @@ style: |
 _paginate: false
 -->
 
-```ANTA Hackathon documentation```
+<style scoped>section {font-size: 28px;}</style>
 
-![bg left fit](imgs/avd-logo.webp)
+```ANTA Hackathon Script```
+
+![bg left fit](imgs/intro-anta-hackathon.jpeg)
 
 ---
 
@@ -55,27 +59,69 @@ _paginate: false
 
 <!-- Add footer starting from this slide -->
 <!--
-footer: 'Arista Ansible AVD Extended Workshop, 2023'
+footer: 'Arista EMEA ANTA Hackathon - 2023'
 -->
 
-<style scoped>section {font-size: 14px;}</style>
+![bg right:33%](imgs/pexels-suzy-hazelwood-1226398.jpg)
 
-![bg right](imgs/pexels-suzy-hazelwood-1226398.jpg)
-
-- This workshop is split into 3 sections. Each section takes around 2 hours to complete. That can be done as a full day workshop or split into 3 separate sessions.
-- Make a break when you see a slide with a coffee cup ☕️
+- This hackathon is split into 3 sections. Each section takes around 20 minutes to complete. But it can takes more time if you are running it on your own.
+- Work in team, only one submission per team
+- Repository is available at [titom73/anta-malaga](https://github.com/titom73/anta-malaga)
+- An Arista Test Drive is required.
 - Ask questions at any time!
 
 ---
 
 # Context
 
-...
+Your customer told you their servers can’t reach ressources and they configure servers and fabric with LACP
 
+You don’t have access to configuration of devices and you need to identify his issue.
+
+Test your fabric to check:
+- If all BGP sessions are UP and established.
+- If all interfaces are UP and do not have error or drop counters.
+- EVPN family is configured.
+
+![bg right:33%](imgs/context.jpeg)
 
 ---
 
-# Step #1
+# Stage #1
 
-...
+1. Create an ANTA inventory from scratch
+2. Create an ANTA test catalog from the test plan
+3. Is there any issue on the fabric?
 
+__That’s all folks!__
+
+Use your brain and RTFM:
+- [Use Inventory & Catalog](https://www.anta.ninja/v0.10.0/usage-inventory-catalog/)
+- [ANTA CLI overview](https://www.anta.ninja/v0.10.0/cli/overview/)
+- [Get Inventory Information](https://www.anta.ninja/v0.10.0/cli/get-inventory-information/)
+- [ANTA Tests catalog](https://www.anta.ninja/v0.10.0/api/tests/)
+
+![bg left width:400px](imgs/chrono.png)
+
+---
+
+# Stage #2
+
+Now, you have seen that PortChannel4 is down
+
+Develop a test to check LACP status:
+
+- Check `PortChannel` is in `collecting` mode
+- Check `PortChannel` is in `distributing` mode
+
+![bg right:33%](imgs/ant-chrono.jpeg)
+
+---
+
+# Stage #3
+
+You can now build additional tests to make your customer happier with his Arista Fabric.
+
+__Stage is yours !__
+
+![bg left:40%](imgs/ant-staging.jpeg)
