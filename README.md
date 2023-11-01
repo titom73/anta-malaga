@@ -1,4 +1,4 @@
-# Arista Network Testing Automation (ANTA) demo
+# Arista Network Testing Automation (ANTA) Hackathon
 
 __WIP__ - Documentation is not accurate anymore! Please update it !
 
@@ -6,18 +6,22 @@ This repository is built to support demo about how to use [Arista Network Testin
 
 ## Lab environment
 
-![atd-lab-topology](imgs/lab-topology.png)
+![atd-lab-topology](./imgs/lab-topology.png)
 
-## Provision lab
+## Provision your lab
 
 Please follow [this documentation](./docs/provisioning.md) to build lab for the hackathon session.
 
 ## Authentication
 
+Because pasword is generated per lab, here is how to get it and use it with all tools provided by repository.
+
 - Username: __arista__ (password: `atd generated password`)
 
 ```bash
-export LABPASSPHRASE=`cat /home/coder/.config/code-server/config.yaml| grep "password:" | awk '{print $2}'`
+export LABPASSPHRASE=`cat /home/coder/.config/code-server/config.yaml |\
+    grep "password:" |\
+    awk '{print $2}'`
 ```
 
 If you want to not provide username and password to ANTA for each execution, you can source a file with content similar to the following snippet:
@@ -39,8 +43,6 @@ export ANTA_ENABLE=false
 | Leaf2    | Management0         | 192.168.0.13/24 |
 | Leaf3    | Management0         | 192.168.0.14/24 |
 | Leaf4    | Management0         | 192.168.0.15/24 |
-| Host1    | Management0         | 192.168.0.16/24 |
-| Host2    | Management0         | 192.168.0.17/24 |
 
 ## Available demo
 
@@ -51,3 +53,4 @@ __To be reviewed before GO LIVE__
 
 - [Base demo](docs/demo-base.md): Demonstrate [ANTA](www.anta.ninja) capabilities using cEOS as network endpoints
 - [Build your test demo](docs/demo-tests.md): Demonstrate how to build your own ANTA tests library
+- Start hackathon using [hackathon.anta.ninja](http://hackathon.anta.ninja/)
