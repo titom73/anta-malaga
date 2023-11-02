@@ -114,14 +114,29 @@ Develop a test to check LACP status:
 - Check `PortChannel` is in `collecting` mode
 - Check `PortChannel` is in `distributing` mode
 
+## Tips
+
+- Use `pip install -e .`
+- Develop your tests under `./anta_custom/<your_file>.py`
+- Your test will be available with `anta_customer.<your_file>.<your_test>`
+- [Test development example](https://github.com/titom73/atd-anta-demo/tree/main/docs)
+
 ![bg right:33%](imgs/ant-chrono.jpeg)
 
 ---
 
 # Stage #3
 
+WIP
+
+![bg left:40%](imgs/anta-chrono-02.jpeg)
+
+---
+
+# Stage #4
+
 You can now build additional tests to make your customer happier with his Arista Fabric.
 
 __Stage is yours !__
 
-![bg left:40%](imgs/ant-staging.jpeg)
+![bg right:60%](imgs/ant-staging.jpeg)
