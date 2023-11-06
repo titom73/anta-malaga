@@ -69,6 +69,7 @@ footer: 'Arista EMEA ANTA Hackathon - 2023'
 - Repository is available at [titom73/anta-malaga](https://github.com/titom73/anta-malaga)
 - An Arista Test Drive is required.
 - Ask questions at any time!
+- Google Chat: [#anta-field](https://chat.google.com/room/AAAAN780xDU?cls=7) on Google Chat
 
 ---
 
@@ -140,3 +141,16 @@ You can now build additional tests to make your customer happier with his Arista
 __Stage is yours !__
 
 ![bg right:60%](imgs/ant-staging.jpeg)
+
+---
+
+# Thank you !
+
+<!-- Do not add page number on this slide -->
+<!--
+_paginate: false
+-->
+
+<style scoped>section {font-size: 28px;}</style>
+
+![bg left fit](imgs/ant-thank-you.jpeg)
