@@ -14,7 +14,7 @@ Please follow [this documentation](./docs/provisioning.md) to build lab for the 
 
 ## Authentication
 
-Because pasword is generated per lab, here is how to get it and use it with all tools provided by repository.
+Because password is generated per lab, here is how to get it and use it with all tools provided by repository.
 
 - Username: __arista__ (password: `atd generated password`)
 
@@ -44,13 +44,6 @@ export ANTA_ENABLE=false
 | Leaf3    | Management0         | 192.168.0.14/24 |
 | Leaf4    | Management0         | 192.168.0.15/24 |
 
-## Available demo
+## Hackathon script
 
-__To be reviewed before GO LIVE__
-
-> **Note**
-> Please follow [provisioning process](./docs/provisioning.md) first !
-
-- [Base demo](docs/demo-base.md): Demonstrate [ANTA](www.anta.ninja) capabilities using cEOS as network endpoints
-- [Build your test demo](docs/demo-tests.md): Demonstrate how to build your own ANTA tests library
-- Start hackathon using [hackathon.anta.ninja](http://hackathon.anta.ninja/)
+Please visit [script slides](https://hackathon.anta.ninja/) to start event !

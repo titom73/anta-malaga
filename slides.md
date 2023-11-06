@@ -128,7 +128,12 @@ Develop a test to check LACP status:
 
 # Stage #3
 
-WIP
+Traffic is still not passing correctly. Check that all connected routes are correctly installed in routing table. You should have at least 3 static routes installed in VRF `Tenant_A_OP_Zone`
+
+Develop a test based on `AntaTemplate` to validate number of connected routes in VRFs:
+
+- Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/v0.10.0/api/models/#template-definition)
+- VRF name is an template input for your test.
 
 ![bg left:40%](imgs/anta-chrono-02.jpeg)
 

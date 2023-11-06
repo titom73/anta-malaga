@@ -236,7 +236,7 @@ vlan 4094
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | MLAG_PEER_s1-leaf3_Ethernet1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
-| Ethernet4 | s1-host2_Eth2 | *access | *110 | *- | *- | 4 |
+| Ethernet4 | s1-host2_Eth2 | *trunk | *160 | *- | *- | 4 |
 | Ethernet6 | MLAG_PEER_s1-leaf3_Ethernet6 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
 
 *Inherited from Port-Channel Interface
@@ -291,7 +291,7 @@ interface Ethernet6
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | MLAG_PEER_s1-leaf3_Po1 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
-| Port-Channel4 | s1-host2_PortChannel | switched | access | 110 | - | - | - | - | 4 | - |
+| Port-Channel4 | s1-host2_PortChannel | switched | trunk | 160 | - | - | - | - | 4 | - |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -309,7 +309,8 @@ interface Port-Channel4
    description s1-host2_PortChannel
    no shutdown
    switchport
-   switchport access vlan 110
+   switchport trunk allowed vlan 160
+   switchport mode trunk
    mlag 4
 ```
 
@@ -361,7 +362,7 @@ interface Loopback100
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan110 | Tenant_A_OP_Zone_1 | Tenant_A_OP_Zone | - | False |
+| Vlan110 | Tenant_A_OP_Zone_1 | Tenant_A_OP_Zone | - | True |
 | Vlan3009 | MLAG_PEER_L3_iBGP: vrf Tenant_A_OP_Zone | Tenant_A_OP_Zone | 1500 | False |
 | Vlan4093 | MLAG_PEER_L3_PEERING | default | 1500 | False |
 | Vlan4094 | MLAG_PEER | default | 1500 | False |
@@ -381,7 +382,7 @@ interface Loopback100
 !
 interface Vlan110
    description Tenant_A_OP_Zone_1
-   no shutdown
+   shutdown
    vrf Tenant_A_OP_Zone
    ip address virtual 10.1.10.1/24
 !

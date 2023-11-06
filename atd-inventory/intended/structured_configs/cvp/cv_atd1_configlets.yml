@@ -11,21 +11,22 @@ cvp_configlets:
     Tenant_A_OP_Zone\n!\ninterface Port-Channel1\n   description MLAG_PEER_s1-leaf2_Po1\n
     \  no shutdown\n   switchport\n   switchport mode trunk\n   switchport trunk group
     LEAF_PEER_L3\n   switchport trunk group MLAG\n!\ninterface Port-Channel4\n   description
-    s1-host1_PortChannel\n   no shutdown\n   switchport\n   switchport access vlan
-    110\n   mlag 4\n!\ninterface Ethernet1\n   description MLAG_PEER_s1-leaf2_Ethernet1\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Ethernet2\n   description
-    P2P_LINK_TO_S1-SPINE1_Ethernet2\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  ip address 172.30.255.1/31\n!\ninterface Ethernet3\n   description P2P_LINK_TO_S1-SPINE2_Ethernet2\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.30.255.3/31\n!\ninterface
-    Ethernet4\n   description s1-host1_Eth1\n   no shutdown\n   channel-group 4 mode
-    active\n!\ninterface Ethernet6\n   description MLAG_PEER_s1-leaf2_Ethernet6\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Loopback0\n   description
-    EVPN_Overlay_Peering\n   no shutdown\n   ip address 192.0.255.3/32\n!\ninterface
-    Loopback1\n   description VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address
-    192.0.254.3/32\n!\ninterface Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n
-    \  no shutdown\n   vrf Tenant_A_OP_Zone\n   ip address 10.255.1.3/32\n!\ninterface
-    Management0\n   description oob_management\n   no shutdown\n   ip address 192.168.0.12/24\n!\ninterface
-    Vlan110\n   description Tenant_A_OP_Zone_1\n   no shutdown\n   vrf Tenant_A_OP_Zone\n
+    s1-host1_PortChannel\n   no shutdown\n   switchport\n   switchport trunk allowed
+    vlan 160\n   switchport mode trunk\n   mlag 4\n!\ninterface Ethernet1\n   description
+    MLAG_PEER_s1-leaf2_Ethernet1\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description P2P_LINK_TO_S1-SPINE1_Ethernet2\n   no shutdown\n   mtu
+    1500\n   no switchport\n   ip address 172.30.255.1/31\n!\ninterface Ethernet3\n
+    \  description P2P_LINK_TO_S1-SPINE2_Ethernet2\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 172.30.255.3/31\n!\ninterface Ethernet4\n   description
+    s1-host1_Eth1\n   no shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet6\n
+    \  description MLAG_PEER_s1-leaf2_Ethernet6\n   no shutdown\n   channel-group
+    1 mode active\n!\ninterface Loopback0\n   description EVPN_Overlay_Peering\n   no
+    shutdown\n   ip address 192.0.255.3/32\n!\ninterface Loopback1\n   description
+    VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address 192.0.254.3/32\n!\ninterface
+    Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n   no shutdown\n
+    \  vrf Tenant_A_OP_Zone\n   ip address 10.255.1.3/32\n!\ninterface Management0\n
+    \  description oob_management\n   no shutdown\n   ip address 192.168.0.12/24\n!\ninterface
+    Vlan110\n   description Tenant_A_OP_Zone_1\n   shutdown\n   vrf Tenant_A_OP_Zone\n
     \  ip address virtual 10.1.10.1/24\n!\ninterface Vlan3009\n   description MLAG_PEER_L3_iBGP:
     vrf Tenant_A_OP_Zone\n   no shutdown\n   mtu 1500\n   vrf Tenant_A_OP_Zone\n   ip
     address 10.255.251.0/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n
@@ -91,21 +92,22 @@ cvp_configlets:
     Tenant_A_OP_Zone\n!\ninterface Port-Channel1\n   description MLAG_PEER_s1-leaf1_Po1\n
     \  no shutdown\n   switchport\n   switchport mode trunk\n   switchport trunk group
     LEAF_PEER_L3\n   switchport trunk group MLAG\n!\ninterface Port-Channel4\n   description
-    s1-host1_PortChannel\n   no shutdown\n   switchport\n   switchport access vlan
-    110\n   mlag 4\n!\ninterface Ethernet1\n   description MLAG_PEER_s1-leaf1_Ethernet1\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Ethernet2\n   description
-    P2P_LINK_TO_S1-SPINE1_Ethernet3\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  ip address 172.30.255.5/31\n!\ninterface Ethernet3\n   description P2P_LINK_TO_S1-SPINE2_Ethernet3\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.30.255.7/31\n!\ninterface
-    Ethernet4\n   description s1-host1_Eth2\n   no shutdown\n   channel-group 4 mode
-    active\n!\ninterface Ethernet6\n   description MLAG_PEER_s1-leaf1_Ethernet6\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Loopback0\n   description
-    EVPN_Overlay_Peering\n   no shutdown\n   ip address 192.0.255.4/32\n!\ninterface
-    Loopback1\n   description VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address
-    192.0.254.3/32\n!\ninterface Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n
-    \  no shutdown\n   vrf Tenant_A_OP_Zone\n   ip address 10.255.1.4/32\n!\ninterface
-    Management0\n   description oob_management\n   no shutdown\n   ip address 192.168.0.13/24\n!\ninterface
-    Vlan110\n   description Tenant_A_OP_Zone_1\n   no shutdown\n   vrf Tenant_A_OP_Zone\n
+    s1-host1_PortChannel\n   no shutdown\n   switchport\n   switchport trunk allowed
+    vlan 160\n   switchport mode trunk\n   mlag 4\n!\ninterface Ethernet1\n   description
+    MLAG_PEER_s1-leaf1_Ethernet1\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description P2P_LINK_TO_S1-SPINE1_Ethernet3\n   no shutdown\n   mtu
+    1500\n   no switchport\n   ip address 172.30.255.5/31\n!\ninterface Ethernet3\n
+    \  description P2P_LINK_TO_S1-SPINE2_Ethernet3\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 172.30.255.7/31\n!\ninterface Ethernet4\n   description
+    s1-host1_Eth2\n   no shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet6\n
+    \  description MLAG_PEER_s1-leaf1_Ethernet6\n   no shutdown\n   channel-group
+    1 mode active\n!\ninterface Loopback0\n   description EVPN_Overlay_Peering\n   no
+    shutdown\n   ip address 192.0.255.4/32\n!\ninterface Loopback1\n   description
+    VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address 192.0.254.3/32\n!\ninterface
+    Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n   no shutdown\n
+    \  vrf Tenant_A_OP_Zone\n   ip address 10.255.1.4/32\n!\ninterface Management0\n
+    \  description oob_management\n   no shutdown\n   ip address 192.168.0.13/24\n!\ninterface
+    Vlan110\n   description Tenant_A_OP_Zone_1\n   shutdown\n   vrf Tenant_A_OP_Zone\n
     \  ip address virtual 10.1.10.1/24\n!\ninterface Vlan3009\n   description MLAG_PEER_L3_iBGP:
     vrf Tenant_A_OP_Zone\n   no shutdown\n   mtu 1500\n   vrf Tenant_A_OP_Zone\n   ip
     address 10.255.251.1/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n
@@ -171,21 +173,22 @@ cvp_configlets:
     Tenant_A_OP_Zone\n!\ninterface Port-Channel1\n   description MLAG_PEER_s1-leaf4_Po1\n
     \  no shutdown\n   switchport\n   switchport mode trunk\n   switchport trunk group
     LEAF_PEER_L3\n   switchport trunk group MLAG\n!\ninterface Port-Channel4\n   description
-    s1-host2_PortChannel\n   no shutdown\n   switchport\n   switchport access vlan
-    110\n   mlag 4\n!\ninterface Ethernet1\n   description MLAG_PEER_s1-leaf4_Ethernet1\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Ethernet2\n   description
-    P2P_LINK_TO_S1-SPINE1_Ethernet4\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  ip address 172.30.255.9/31\n!\ninterface Ethernet3\n   description P2P_LINK_TO_S1-SPINE2_Ethernet4\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.30.255.11/31\n!\ninterface
-    Ethernet4\n   description s1-host2_Eth1\n   no shutdown\n   channel-group 4 mode
-    active\n!\ninterface Ethernet6\n   description MLAG_PEER_s1-leaf4_Ethernet6\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Loopback0\n   description
-    EVPN_Overlay_Peering\n   no shutdown\n   ip address 192.0.255.5/32\n!\ninterface
-    Loopback1\n   description VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address
-    192.0.254.5/32\n!\ninterface Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n
-    \  no shutdown\n   vrf Tenant_A_OP_Zone\n   ip address 10.255.1.5/32\n!\ninterface
-    Management0\n   description oob_management\n   no shutdown\n   ip address 192.168.0.14/24\n!\ninterface
-    Vlan110\n   description Tenant_A_OP_Zone_1\n   no shutdown\n   vrf Tenant_A_OP_Zone\n
+    s1-host2_PortChannel\n   no shutdown\n   switchport\n   switchport trunk allowed
+    vlan 160\n   switchport mode trunk\n   mlag 4\n!\ninterface Ethernet1\n   description
+    MLAG_PEER_s1-leaf4_Ethernet1\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description P2P_LINK_TO_S1-SPINE1_Ethernet4\n   no shutdown\n   mtu
+    1500\n   no switchport\n   ip address 172.30.255.9/31\n!\ninterface Ethernet3\n
+    \  description P2P_LINK_TO_S1-SPINE2_Ethernet4\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 172.30.255.11/31\n!\ninterface Ethernet4\n   description
+    s1-host2_Eth1\n   no shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet6\n
+    \  description MLAG_PEER_s1-leaf4_Ethernet6\n   no shutdown\n   channel-group
+    1 mode active\n!\ninterface Loopback0\n   description EVPN_Overlay_Peering\n   no
+    shutdown\n   ip address 192.0.255.5/32\n!\ninterface Loopback1\n   description
+    VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address 192.0.254.5/32\n!\ninterface
+    Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n   no shutdown\n
+    \  vrf Tenant_A_OP_Zone\n   ip address 10.255.1.5/32\n!\ninterface Management0\n
+    \  description oob_management\n   no shutdown\n   ip address 192.168.0.14/24\n!\ninterface
+    Vlan110\n   description Tenant_A_OP_Zone_1\n   shutdown\n   vrf Tenant_A_OP_Zone\n
     \  ip address virtual 10.1.10.1/24\n!\ninterface Vlan3009\n   description MLAG_PEER_L3_iBGP:
     vrf Tenant_A_OP_Zone\n   no shutdown\n   mtu 1500\n   vrf Tenant_A_OP_Zone\n   ip
     address 10.255.251.4/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n
@@ -251,21 +254,22 @@ cvp_configlets:
     Tenant_A_OP_Zone\n!\ninterface Port-Channel1\n   description MLAG_PEER_s1-leaf3_Po1\n
     \  no shutdown\n   switchport\n   switchport mode trunk\n   switchport trunk group
     LEAF_PEER_L3\n   switchport trunk group MLAG\n!\ninterface Port-Channel4\n   description
-    s1-host2_PortChannel\n   no shutdown\n   switchport\n   switchport access vlan
-    110\n   mlag 4\n!\ninterface Ethernet1\n   description MLAG_PEER_s1-leaf3_Ethernet1\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Ethernet2\n   description
-    P2P_LINK_TO_S1-SPINE1_Ethernet5\n   no shutdown\n   mtu 1500\n   no switchport\n
-    \  ip address 172.30.255.13/31\n!\ninterface Ethernet3\n   description P2P_LINK_TO_S1-SPINE2_Ethernet5\n
-    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 172.30.255.15/31\n!\ninterface
-    Ethernet4\n   description s1-host2_Eth2\n   no shutdown\n   channel-group 4 mode
-    active\n!\ninterface Ethernet6\n   description MLAG_PEER_s1-leaf3_Ethernet6\n
-    \  no shutdown\n   channel-group 1 mode active\n!\ninterface Loopback0\n   description
-    EVPN_Overlay_Peering\n   no shutdown\n   ip address 192.0.255.6/32\n!\ninterface
-    Loopback1\n   description VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address
-    192.0.254.5/32\n!\ninterface Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n
-    \  no shutdown\n   vrf Tenant_A_OP_Zone\n   ip address 10.255.1.6/32\n!\ninterface
-    Management0\n   description oob_management\n   no shutdown\n   ip address 192.168.0.15/24\n!\ninterface
-    Vlan110\n   description Tenant_A_OP_Zone_1\n   no shutdown\n   vrf Tenant_A_OP_Zone\n
+    s1-host2_PortChannel\n   no shutdown\n   switchport\n   switchport trunk allowed
+    vlan 160\n   switchport mode trunk\n   mlag 4\n!\ninterface Ethernet1\n   description
+    MLAG_PEER_s1-leaf3_Ethernet1\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description P2P_LINK_TO_S1-SPINE1_Ethernet5\n   no shutdown\n   mtu
+    1500\n   no switchport\n   ip address 172.30.255.13/31\n!\ninterface Ethernet3\n
+    \  description P2P_LINK_TO_S1-SPINE2_Ethernet5\n   no shutdown\n   mtu 1500\n
+    \  no switchport\n   ip address 172.30.255.15/31\n!\ninterface Ethernet4\n   description
+    s1-host2_Eth2\n   no shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet6\n
+    \  description MLAG_PEER_s1-leaf3_Ethernet6\n   no shutdown\n   channel-group
+    1 mode active\n!\ninterface Loopback0\n   description EVPN_Overlay_Peering\n   no
+    shutdown\n   ip address 192.0.255.6/32\n!\ninterface Loopback1\n   description
+    VTEP_VXLAN_Tunnel_Source\n   no shutdown\n   ip address 192.0.254.5/32\n!\ninterface
+    Loopback100\n   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS\n   no shutdown\n
+    \  vrf Tenant_A_OP_Zone\n   ip address 10.255.1.6/32\n!\ninterface Management0\n
+    \  description oob_management\n   no shutdown\n   ip address 192.168.0.15/24\n!\ninterface
+    Vlan110\n   description Tenant_A_OP_Zone_1\n   shutdown\n   vrf Tenant_A_OP_Zone\n
     \  ip address virtual 10.1.10.1/24\n!\ninterface Vlan3009\n   description MLAG_PEER_L3_iBGP:
     vrf Tenant_A_OP_Zone\n   no shutdown\n   mtu 1500\n   vrf Tenant_A_OP_Zone\n   ip
     address 10.255.251.5/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n

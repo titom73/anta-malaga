@@ -1,9 +1,8 @@
 ---
 port_profiles:
   - profile: TENANT_A
-    mode: access
-    vlans: "110"
-
+    mode: trunk
+    vlans: "160"
 
 servers:
   - name: s1-host1
