@@ -128,12 +128,13 @@ Develop a test to check LACP status:
 
 # Stage #3
 
-Traffic is still not passing correctly. Check that all connected routes are correctly installed in routing table. You should have at least 3 static routes installed in VRF `Tenant_A_OP_Zone`
+Traffic is still not passing correctly. Check that all connected routes are correctly installed in routing table. You should have at least 3 connected routes installed in VRF `Tenant_A_OP_Zone`
 
 Develop a test based on `AntaTemplate` to validate number of connected routes in VRFs:
 
 - Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/v0.10.0/api/models/#template-definition)
 - VRF name is an template input for your test.
+- Run ANTA to check routes status and fix configuration in EOS.
 
 ![bg left:40%](imgs/anta-chrono-02.jpeg)
 
@@ -149,7 +150,16 @@ __Stage is yours !__
 
 ---
 
-# Thank you !
+# Conclusion
+
+- How do you think you can use ANTA in the field ?
+- What key feature is missing for customer’s usage ?
+
+![bg left](imgs/conclusion.jpeg)
+
+---
+
+<!-- # Thank you ! -->
 
 <!-- Do not add page number on this slide -->
 <!--
@@ -158,4 +168,4 @@ _paginate: false
 
 <style scoped>section {font-size: 28px;}</style>
 
-![bg left fit](imgs/ant-thank-you.jpeg)
+![bg center fit](imgs/ant-thank-you.jpeg)
