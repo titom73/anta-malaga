@@ -102,7 +102,7 @@ Use your brain and RTFM:
 - [Get Inventory Information](https://www.anta.ninja/v0.10.0/cli/get-inventory-information/)
 - [ANTA Tests catalog](https://www.anta.ninja/v0.10.0/api/tests/)
 
-![bg left width:400px](imgs/chrono.png)
+![bg left](imgs/ant-chrono-3.jpeg)
 
 ---
 

@@ -10,7 +10,17 @@ This repository is built to support demo about how to use [Arista Network Testin
 
 ## Provision your lab
 
+### Lab configuration
+
 Please follow [this documentation](./docs/provisioning.md) to build lab for the hackathon session.
+
+### Install ANTA
+
+Please install ANTA from pypi servers:
+
+```bash
+pip install --upgrade 'anta==0.10.0'
+```
 
 ## Authentication
 
@@ -32,6 +42,8 @@ export ANTA_USERNAME=ansible
 export ANTA_PASSWORD=${LABPASSPHRASE}
 export ANTA_ENABLE=false
 ```
+
+> More information about these commandes [are availble](https://www.anta.ninja/v0.10.0/cli/overview/)
 
 ## Management IPs
 

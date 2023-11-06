@@ -40,3 +40,5 @@ cd atd-inventory/
 ```bash
 ansible-playbook playbooks/atd-update-topo.yml
 ```
+
+![Cloudvision Provisioning](../imgs/cvp-provision.png)
