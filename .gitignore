@@ -251,3 +251,14 @@ cython_debug/
 #.idea/
 
 .personal
+
+# ignore clab files
+clab-*
+*.bak
+
+# ingnore images and other files not to be uploaded to GitHub
+.gitignored/*
+!.gitignored/README.md
+
+# ignore avd backups
+config_backup
