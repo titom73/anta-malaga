@@ -12,24 +12,31 @@ topology:
       image: ceos-lab:latest
   defaults:
     kind: ceos
-    startup-config: init-configs/ceos-init.cfg
   nodes:
     # site1 only
     s1-spine1:
+      startup-config: init-configs/s1-spine1.cfg
       mgmt-ipv4: 192.168.0.10
     s1-spine2:
+      startup-config: init-configs/s1-spine2.cfg
       mgmt-ipv4: 192.168.0.11
     s1-leaf1:
+      startup-config: init-configs/s1-leaf1.cfg
       mgmt-ipv4: 192.168.0.12
     s1-leaf2:
+      startup-config: init-configs/s1-leaf2.cfg
       mgmt-ipv4: 192.168.0.13
     s1-leaf3:
+      startup-config: init-configs/s1-leaf3.cfg
       mgmt-ipv4: 192.168.0.14
     s1-leaf4:
+      startup-config: init-configs/s1-leaf4.cfg
       mgmt-ipv4: 192.168.0.15
     s1-host1:
+      startup-config: init-configs/s1-host1.cfg
       mgmt-ipv4: 192.168.0.16
     s1-host2:
+      startup-config: init-configs/s1-host2.cfg
       mgmt-ipv4: 192.168.0.17
 
   links:
