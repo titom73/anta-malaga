@@ -3,8 +3,6 @@ ARG FROM_VARIANT
 
 FROM ${FROM_IMAGE}:${FROM_VARIANT}
 
-FROM ghcr.io/ankudinov/anta-malaga/demo-base:latest
-
 ARG _ARTOKEN
 ARG _AR_FILE_PATH
 
