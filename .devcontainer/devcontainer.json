@@ -1,0 +1,18 @@
+{
+	"name": "ANTA-Hackathon",
+	"build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "_AR_FILE_PATH": "/support/download/EOS-USA/Active Releases/4.31/EOS-4.31.0F/cEOS-lab/cEOS-lab-4.31.0F.tar.xz",
+            "_ARTOKEN": "${localEnv:ARTOKEN}",
+            "FROM_IMAGE": "ghcr.io/ankudinov/anta-malaga/demo-base",
+            "FROM_VARIANT": "latest"
+        }
+    },
+    "onCreateCommand": "docker import /home/vscode/tmp/ceos-lab-temp ceos-lab:latest; rm -rf /home/vscode/tmp/",
+    // set minimum host requirements for cLab
+    "hostRequirements": {
+        "cpus": 8,
+        "memory": "16gb"
+    }
+}
