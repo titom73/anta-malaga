@@ -14,43 +14,41 @@ topology:
     kind: ceos
     startup-config: init-configs/ceos-init.cfg
   nodes:
-    # dc1
-    dc1-spine1:
+    # site1 only
+    s1-spine1:
       mgmt-ipv4: 192.168.0.10
-    dc1-spine2:
+    s1-spine2:
       mgmt-ipv4: 192.168.0.11
-    dc1-leaf1:
+    s1-leaf1:
       mgmt-ipv4: 192.168.0.12
-    dc1-leaf2:
+    s1-leaf2:
       mgmt-ipv4: 192.168.0.13
-    dc1-leaf3:
+    s1-leaf3:
       mgmt-ipv4: 192.168.0.14
-    dc1-leaf4:
+    s1-leaf4:
       mgmt-ipv4: 192.168.0.15
+    s1-host1:
+      mgmt-ipv4: 192.168.0.16
+    s1-host2:
+      mgmt-ipv4: 192.168.0.17
 
   links:
-# spine to spine
-  - endpoints: ["spine1:eth1", "spine2:eth1"]
-  - endpoints: ["spine1:eth6", "spine2:eth6"]
   # leaf to spine
-  - endpoints: ["leaf1:eth2", "spine1:eth2"]
-  - endpoints: ["leaf1:eth3", "spine2:eth2"]
-  - endpoints: ["leaf2:eth2", "spine1:eth3"]
-  - endpoints: ["leaf2:eth3", "spine2:eth3"]
-  - endpoints: ["leaf3:eth2", "spine1:eth4"]
-  - endpoints: ["leaf3:eth3", "spine2:eth4"]
-  - endpoints: ["leaf4:eth2", "spine1:eth5"]
-  - endpoints: ["leaf4:eth3", "spine2:eth5"]
+  - endpoints: ["s1-leaf1:eth2", "s1-spine1:eth2"]
+  - endpoints: ["s1-leaf1:eth3", "s1-spine2:eth2"]
+  - endpoints: ["s1-leaf2:eth2", "s1-spine1:eth3"]
+  - endpoints: ["s1-leaf2:eth3", "s1-spine2:eth3"]
+  - endpoints: ["s1-leaf3:eth2", "s1-spine1:eth4"]
+  - endpoints: ["s1-leaf3:eth3", "s1-spine2:eth4"]
+  - endpoints: ["s1-leaf4:eth2", "s1-spine1:eth5"]
+  - endpoints: ["s1-leaf4:eth3", "s1-spine2:eth5"]
   # leaf to leaf
-  - endpoints: ["leaf1:eth1", "leaf2:eth1"]
-  - endpoints: ["leaf1:eth6", "leaf2:eth6"]
-  - endpoints: ["leaf3:eth1", "leaf4:eth1"]
-  - endpoints: ["leaf3:eth6", "leaf4:eth6"]
-  - endpoints: ["leaf1:eth4", "host1:eth1"]
-  - endpoints: ["leaf1:eth5", "host1:eth3"]
-  - endpoints: ["leaf2:eth4", "host1:eth2"]
-  - endpoints: ["leaf2:eth5", "host1:eth4"]
-  - endpoints: ["leaf3:eth4", "host2:eth1"]
-  - endpoints: ["leaf3:eth5", "host2:eth3"]
-  - endpoints: ["leaf4:eth4", "host2:eth2"]
-  - endpoints: ["leaf4:eth5", "host2:eth4"]
+  - endpoints: ["s1-leaf1:eth1", "s1-leaf2:eth1"]
+  - endpoints: ["s1-leaf1:eth6", "s1-leaf2:eth6"]
+  - endpoints: ["s1-leaf3:eth1", "s1-leaf4:eth1"]
+  - endpoints: ["s1-leaf3:eth6", "s1-leaf4:eth6"]
+  # leaf to host
+  - endpoints: ["s1-leaf1:eth4", "s1-host1:eth1"]
+  - endpoints: ["s1-leaf2:eth4", "s1-host1:eth2"]
+  - endpoints: ["s1-leaf3:eth4", "s1-host2:eth1"]
+  - endpoints: ["s1-leaf4:eth4", "s1-host2:eth2"]
