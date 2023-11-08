@@ -30,7 +30,9 @@ ENV ANSIBLE_CONFIG="/workspaces/${GIT_REPO_NAME}/atd-inventory/ansible.cfg"
 RUN pip3 install "${ANSIBLE_CORE_VERSION}" \
     && ansible-galaxy collection install arista.avd:==${AVD_VERSION} \
     && pip3 install -r /home/${USERNAME}/.ansible/collections/ansible_collections/arista/avd/requirements.txt \
-    && pip3 install 'anta==0.10.0'
+    && pip3 install 'anta==0.10.0' \
+    # add passlib to calculate Ansible password_hash
+    && pip3 install passlib
 
 # install the latest containerlab and yamllint
 RUN bash -c "$(curl -sL https://get.containerlab.dev)" -- -v ${CLAB_VERSION} \
