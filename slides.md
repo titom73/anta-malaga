@@ -10,7 +10,7 @@ math: mathjax
 # backgroundImage: "linear-gradient(to bottom, #1e3744, #301B29)"
 style: |
     :root {
-      background: #ffffff;
+      background: linear-gradient(to left, #ece9e6, #ffffff);
     }
     h1 {
       font-size: 50px;
