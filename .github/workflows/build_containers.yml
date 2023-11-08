@@ -19,16 +19,12 @@ jobs:
     strategy:
       matrix:
         container_name: [demo-base]
-        avd_version: ["4.3.0", "4.4.0"]
+        avd_version: ["4.4.0"]
         ansible_core_version: ["ansible-core>=2.12.6,<2.16.0,!=2.13.0"]
         clab_version: ["0.47.2"]
         include:
-          - avd_version: "4.1.0"
-            container_tags: "4.1.0"
-          - avd_version: "4.2.0"
-            container_tags: "4.2.0"
-          - avd_version: "4.3.0"
-            container_tags: "latest,4.3.0"
+          - avd_version: "4.4.0"
+            container_tags: "latest,4.4.0"
 
     with:
       container_name: ${{ matrix.container_name }}
