@@ -17,4 +17,4 @@ local_users:
   - name: arista
     privilege: 15
     role: network-admin
-    sha512_password: "{{ lookup('env', 'LABPASSPHRASE') | password_hash(salt='workshop') }}"
+    sha512_password: "{{ lookup('env', 'LABPASSPHRASE') | password_hash(rounds=5000) }}"
