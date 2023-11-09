@@ -23,3 +23,7 @@ start: ## Deploy ceos lab
 .PHONY: stop
 stop: ## Destroy ceos lab
 	sudo containerlab destroy --debug --topo $(CURRENT_DIR)/clab/topology.clab.yml --cleanup
+
+.PHONY: copy_tests
+copy_tests: ## Copy additional tests to eos_validate_state
+	cp -r anta_tests/ /home/vscode/.ansible/collections/ansible_collections/arista/avd/roles/eos_validate_state/python_modules/tests/
