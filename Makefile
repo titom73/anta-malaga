@@ -24,11 +24,6 @@ start: ## Deploy ceos lab
 stop: ## Destroy ceos lab
 	sudo containerlab destroy --debug --topo $(CURRENT_DIR)/clab/topology.clab.yml --cleanup
 
-.PHONY: add_tests
-add_tests: ## Copy additional tests to eos_validate_state
-	cp -r anta_tests/ /home/vscode/.ansible/collections/ansible_collections/arista/avd/roles/eos_validate_state/python_modules/tests/
-
-.PHONY: get_tests
-get_tests: ## Copy existing ANTA tests to the repo
-	cp -r /home/vscode/.ansible/collections/ansible_collections/arista/avd/roles/eos_validate_state/python_modules/tests/ anta_tests/
-
+.PHONY: save_anta_catalog
+save_anta_catalog: ## save anta test catalog
+	cd $(CURRENT_DIR)/atd-inventory/playbooks; ansible-playbook atd-save-anta-catalog.yml
