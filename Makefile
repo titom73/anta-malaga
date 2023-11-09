@@ -12,6 +12,10 @@ build: ## Generate AVD configs
 deploy: ## Deploy AVD configs using eAPI
 	cd $(CURRENT_DIR)/atd-inventory/playbooks; ansible-playbook atd-fabric-provision-eapi.yml
 
+.PHONY: test
+test: ## run ANTA tests
+	cd $(CURRENT_DIR)/atd-inventory/playbooks; ansible-playbook atd-validate-states.yml
+
 .PHONY: start
 start: ## Deploy ceos lab
 	sudo containerlab deploy --debug --topo $(CURRENT_DIR)/clab/topology.clab.yml --max-workers 2 --timeout 5m --reconfigure
