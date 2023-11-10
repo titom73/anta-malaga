@@ -63,4 +63,10 @@ sudo containerlab deploy
 +---+------------------------------+--------------+---------------------+-------+---------+-----------------+
 ```
 
+## EOS credentials
+
+- Username `admin` no password
+- Username: __`ansible`__ (password: `ansible`)
+- Username: __`arista`__ (password: `arista`)
+
 Now enjoy !
