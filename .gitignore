@@ -252,3 +252,4 @@ cython_debug/
 
 .personal
 atd-inventory/clab-anta-hackathon
+atd-inventory/.anta.clab.yml.bak
