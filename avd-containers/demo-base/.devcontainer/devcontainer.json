@@ -14,7 +14,7 @@
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2.5.0": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2.7.1": {
             "version": "latest"
         },
         // add sshd to support gh cli codespace cp
