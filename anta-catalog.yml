@@ -1,0 +1,50 @@
+---
+# Sample ANTA test catalog
+# build your own
+
+# Load anta.tests.software
+anta.tests.software:
+  # Verifies the device is running one of the allowed EOS version.
+  - VerifyEOSVersion:
+      # List of allowed EOS versions.
+      versions:
+        - 4.30.2F
+        - 4.26.1F
+
+# Load anta.tests.configuration
+anta.tests.configuration:
+  # Verifies ZeroTouch is disabled.
+  - VerifyZeroTouch:
+
+# Load anta.tests.system
+anta.tests.system:
+  # Verifies the device uptime is higher than a value.
+  - VerifyUptime:
+      minimum: 1
+  - VerifyCPUUtilization: # Verifies the CPU utilization is less than 75%.
+  - VerifyMemoryUtilization: # Verifies the memory utilization is less than 75%.
+  - VerifyNTP: # Verifies NTP is synchronised.
+
+# Load anta.tests.interfaces
+anta.tests.interfaces:
+  # Verifies interfaces states
+  - VerifyInterfaceErrors:
+  - VerifyInterfaceDiscards:
+  - VerifyInterfaceErrDisabled:
+  - VerifyInterfacesStatus:
+      interfaces:
+        - interface: Ethernet1
+          state: up
+        - interface: Ethernet2
+          state: up
+          protocol_status: up
+
+# Load anta.tests.mlag
+anta.tests.mlag:
+  # Verifies there are no MLAG config-sanity inconsistencies.
+  - VerifyMlagConfigSanity:
+
+# Load anta.tests.vxlan
+anta.tests.vxlan:
+  # Verifies that no issues are detected with the VXLAN configuration.
+  - VerifyVxlanConfigSanity:
