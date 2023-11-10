@@ -251,4 +251,7 @@ cython_debug/
 #.idea/
 
 .personal
+
+atd-inventory/clab-anta-hackathon
+atd-inventory/.anta.clab.yml.bak
 atd-inventory/clab-anta-hackathon/**
