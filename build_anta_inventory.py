@@ -17,7 +17,7 @@ for host_name, host in inventory['all']['children']['ATD_LAB']['children']['ATD_
     avd_host_list.append({
         'name': host_name,
         'host': host['ansible_host'],
-        'tags': ['fabric', 'spine']
+        'tags': ['fabric', 'spine', host_name]
     })
 
 for pod, pod_members in inventory['all']['children']['ATD_LAB']['children']['ATD_FABRIC']['children']['ATD_LEAFS']['children'].items():
@@ -25,7 +25,7 @@ for pod, pod_members in inventory['all']['children']['ATD_LAB']['children']['ATD
         avd_host_list.append({
             'name': host_name,
             'host': host['ansible_host'],
-            'tags': ['fabric', 'leaf']
+            'tags': ['fabric', 'leaf', host_name]
         })
 
 with open("anta-inventory.yml", "w") as f:
