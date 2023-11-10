@@ -4,6 +4,10 @@
 > This documentation is containerlab oriented and assume you know what you are doing
 > After that, you will need to provision your anta runner like for [ATD on your own](./provisioning.md)
 
+> **Note**
+> This containerlab topology uses `192.168.0.0/24` as management network to match Arista Test Drive IP addressing.
+> If this network overlaps with another one on your server, you will need to manually update the `anta.clab.yml` topology file
+
 ## Get cEOS
 
 ```bash
@@ -17,6 +21,25 @@ ardl get eos --image-type cEOS -l -rtype \M --import-docker
 ```
 
 Today, it will take `4.30.3M` which is the default version in containerlab topology. If it is different version, run containerlab with `EOS_VERSION:=<YOUR EOS VERSIOn>`
+
+## Add a user configuration to AVD
+
+The user configuration is missing from the AVD intended configuration as it is configured with static configlets in Arista Test Drive.
+
+Add the following to `atd-inventory/group_vars/ATD_FABRIC.yml`:
+
+```yaml
+# Local users
+local_users:
+  # Define a new user, which is called "ansible"
+  - name: ansible
+    privilege: 15
+    role: network-admin
+    # Password set to "ansible". Same string as the device generates when configuring a username.
+    sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+```
+
+Run the playbook `atd-inventory/playbooks/atd-fabric-build.yml`.
 
 ## Containerlab topology
 

@@ -14,8 +14,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.10
       startup-config: ./intended/configs/s1-spine1.cfg
-      env:
-        TMODE: lacp
       group: spine
       labels:
         graph-level: 1
@@ -24,8 +22,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.11
       startup-config: ./intended/configs/s1-spine2.cfg
-      env:
-        TMODE: lacp
       group: spine
       labels:
         graph-level: 1
@@ -34,8 +30,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.12
       startup-config: ./intended/configs/s1-leaf1.cfg
-      env:
-        TMODE: lacp
       group: leaf
       labels:
         graph-level: 2
@@ -44,8 +38,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.13
       startup-config: ./intended/configs/s1-leaf2.cfg
-      env:
-        TMODE: lacp
       group: leaf
       labels:
         graph-level: 2
@@ -54,8 +46,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.14
       startup-config: ./intended/configs/s1-leaf3.cfg
-      env:
-        TMODE: lacp
       group: leaf
       labels:
         graph-level: 2
@@ -64,8 +54,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.15
       startup-config: ./intended/configs/s1-leaf4.cfg
-      env:
-        TMODE: lacp
       group: leaf
       labels:
         graph-level: 2
@@ -74,8 +62,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.16
       startup-config: static-confs/host1.cfg
-      env:
-        TMODE: lacp
       group: server
       labels:
         graph-level: 3
@@ -84,8 +70,6 @@ topology:
       kind: ceos
       mgmt-ipv4: 192.168.0.17
       startup-config: static-confs/host2.cfg
-      env:
-        TMODE: lacp
       group: server
       labels:
         graph-level: 3
