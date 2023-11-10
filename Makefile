@@ -23,3 +23,7 @@ start: ## Deploy ceos lab
 .PHONY: stop
 stop: ## Destroy ceos lab
 	sudo containerlab destroy --debug --topo $(CURRENT_DIR)/clab/topology.clab.yml --cleanup
+
+.PHONY: build_anta_inventory
+build_anta_inventory: ## Build ANTA inventory from AVD
+	python3 build_anta_inventory.py
