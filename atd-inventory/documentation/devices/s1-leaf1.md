@@ -274,7 +274,7 @@ interface Ethernet3
 interface Ethernet4
    description s1-host1_Eth1
    no shutdown
-   channel-group 4 mode active
+   channel-group 4 mode on
 !
 interface Ethernet6
    description MLAG_PEER_s1-leaf2_Ethernet6

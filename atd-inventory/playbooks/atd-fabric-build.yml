@@ -15,3 +15,17 @@
     - name: Generate device intended config and documentation
       import_role:
         name: arista.avd.eos_cli_config_gen
+
+- name: Manage Arista EOS HOSTS Configuration
+  hosts: ATD_HOSTS
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+  vars:
+    fabric_dir_name: "{{fabric_name}}"
+    execute_tasks: false
+  tasks:
+    - name: Generate device intended config and documentation
+      import_role:
+        name: arista.avd.eos_cli_config_gen

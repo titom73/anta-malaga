@@ -4,6 +4,10 @@
 > This documentation is containerlab oriented and assume you know what you are doing
 > After that, you will need to provision your anta runner like for [ATD on your own](./provisioning.md)
 
+> **Warning**
+> The provisioning playbook is only valid for ATD and does not work with containerlab. In this scenario,
+> doing a change in AVD means reload your topology
+
 > **Note**
 > This containerlab topology uses `192.168.0.0/24` as management network to match Arista Test Drive IP addressing.
 > If this network overlaps with another one on your server, you will need to manually update the `anta.clab.yml` topology file

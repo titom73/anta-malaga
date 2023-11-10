@@ -8,6 +8,12 @@ all:
           cv_collection: v3
     ATD_LAB:
       children:
+        ATD_HOSTS:
+          hosts:
+            s1-host1:
+              ansible_host: 192.168.0.16
+            s1-host2:
+              ansible_host: 192.168.0.17
         ATD_FABRIC:
           children:
             ATD_SPINES:
