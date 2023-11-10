@@ -5,7 +5,7 @@
         "args": {
             "_AR_FILE_PATH": "/support/download/EOS-USA/Active Releases/4.31/EOS-4.31.0F/cEOS-lab/cEOS-lab-4.31.0F.tar.xz",
             "_ARTOKEN": "${localEnv:ARTOKEN}",
-            "FROM_IMAGE": "ghcr.io/ankudinov/anta-malaga/demo-base",
+            "FROM_IMAGE": "ghcr.io/titom73/anta-malaga/demo-base",
             "FROM_VARIANT": "latest"
         }
     },
