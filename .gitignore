@@ -252,6 +252,10 @@ cython_debug/
 
 .personal
 
+atd-inventory/clab-anta-hackathon
+atd-inventory/.anta.clab.yml.bak
+atd-inventory/clab-anta-hackathon/**
+
 # ignore clab files
 clab-*
 *.bak
