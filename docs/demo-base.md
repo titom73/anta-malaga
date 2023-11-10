@@ -18,16 +18,16 @@ sudo containerlab deploy --topo topology.yml --reconfigure
 cd ..
 ```
 
-* Review ANTA parameters available in [`anta.env`](../anta.env)
+* Review ANTA parameters available in [`.envrc`](../.envrc)
 
 ```bash
-cat anta.env
+cat .envrc
 ```
 
 * Load anta parameters
 
 ```bash
-source anta.env
+source .envrc
 ```
 
 * Run anta testing
