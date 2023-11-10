@@ -12,8 +12,8 @@ build: ## Generate AVD configs
 deploy: ## Deploy AVD configs using eAPI
 	cd $(CURRENT_DIR)/atd-inventory/playbooks; ansible-playbook atd-fabric-provision-eapi.yml
 
-.PHONY: test
-test: ## run ANTA tests
+.PHONY: validate
+validate: ## run ANTA tests with AVD preview
 	cd $(CURRENT_DIR)/atd-inventory/playbooks; ansible-playbook atd-validate-states.yml
 
 .PHONY: start
@@ -27,3 +27,7 @@ stop: ## Destroy ceos lab
 .PHONY: build_anta_inventory
 build_anta_inventory: ## Build ANTA inventory from AVD
 	python3 build_anta_inventory.py
+
+.PHONY: test
+test: ## run ANTA test directly
+	anta --username arista --password ${LABPASSPHRASE} --inventory anta-inventory.yml nrfu --catalog anta-catalog.yml table --tags fabric
