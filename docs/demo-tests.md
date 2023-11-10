@@ -169,7 +169,7 @@ cd ..
 * And now you can run your NRFU tests with the CLI:
 
 ```bash
-$ source anta.env
+$ source .envrc
 Creating default anta variables
 Build auto-complete for anta
 
