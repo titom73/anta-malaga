@@ -264,7 +264,7 @@ ethernet_interfaces:
   type: port-channel-member
   channel_group:
     id: 4
-    mode: 'on'
+    mode: active
 mlag_configuration:
   domain_id: pod2
   local_interface: Vlan4094

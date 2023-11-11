@@ -1,0 +1,37 @@
+---
+cvp_devices:
+  - fqdn: s1-leaf1
+    parentContainerName: pod1
+    configlets:
+      - AVD_s1-leaf1
+  - fqdn: s1-leaf2
+    parentContainerName: pod1
+    configlets:
+      - AVD_s1-leaf2
+  - fqdn: s1-leaf3
+    parentContainerName: pod2
+    configlets:
+      - AVD_s1-leaf3
+  - fqdn: s1-leaf4
+    parentContainerName: pod2
+    configlets:
+      - AVD_s1-leaf4
+  - fqdn: s1-spine1
+    parentContainerName: ATD_SPINES
+    configlets:
+      - AVD_s1-spine1
+  - fqdn: s1-spine2
+    parentContainerName: ATD_SPINES
+    configlets:
+      - AVD_s1-spine2
+cvp_containers:
+  ATD_FABRIC:
+    parentContainerName: Tenant
+  ATD_LEAFS:
+    parentContainerName: ATD_FABRIC
+  ATD_SPINES:
+    parentContainerName: ATD_FABRIC
+  pod1:
+    parentContainerName: ATD_LEAFS
+  pod2:
+    parentContainerName: ATD_LEAFS

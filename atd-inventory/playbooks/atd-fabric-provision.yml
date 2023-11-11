@@ -6,15 +6,24 @@
   # collections:
     # - arista.avd
   tasks:
-    - name: Upload configlets to support HOSTS configuration
-      import_role:
-        name: arista.avd.cvp_configlet_upload
-      vars:
-        configlet_directory: 'intended/configs'
-        file_extension: 'cfg'
-        configlets_cvp_prefix: 'AVD'
-        execute_tasks: true
-        cv_collection: v3
+    # - name: Upload configlets to support HOSTS configuration
+    #   import_role:
+    #     name: arista.avd.cvp_configlet_upload
+    #   vars:
+    #     configlet_directory: 'intended/configs'
+    #     file_extension: 'cfg'
+    #     configlets_cvp_prefix: 'AVD'
+    #     execute_tasks: True
+    #     cv_collection: v1
+    #   register: cvp_configlet_results
+
+    # - name: "Execute pending tasks on {{ inventory_hostname }}"
+    #   arista.cvp.cv_task_v3:
+    #     tasks: "{{ cvp_configlet_results.taskIds }}"
+    #   when:
+    #     - cvp_configlet_results.taskIds | length > 0
+
+# Fabric configuration
 
     - name: Provision CVP with AVD configuration for Fabric
       import_role:
@@ -33,6 +42,24 @@
           ATD_HOSTS:
             parentContainerName: ATD_FABRIC
 
+# HOSTS configuration
+
+    - name: Provision HOSTS configlets
+      arista.cvp.cv_configlet_v3:
+        configlets: "{{CVP_CONFIGLETS}}"
+        state: present
+      vars:
+        CVP_CONFIGLETS:
+          AVD_s1-host1: "{{ lookup('file', '{{inventory_dir}}/intended/configs/s1-host1.cfg') }}"
+          AVD_s1-host2: "{{ lookup('file', '{{inventory_dir}}/intended/configs/s1-host2.cfg') }}"
+      register: cvp_configlet_results
+
+    - name: "Execute pending tasks on {{ inventory_hostname }}"
+      arista.cvp.cv_task_v3:
+        tasks: "{{ cvp_configlet_results.taskIds }}"
+      when:
+        - cvp_configlet_results.taskIds | length > 0
+
     - name: Provision HOSTS configuration
       arista.cvp.cv_device_v3:
         devices:
@@ -46,10 +73,8 @@
               - AVD_s1-host2
       register: cvp_devices_results
 
-    - name: debug
-      ansible.builtin.debug:
-        msg: 'cvp has {{cvp_devices_results}}'
-
     - name: "Execute pending tasks on {{ inventory_hostname }}"
       arista.cvp.cv_task_v3:
         tasks: "{{ cvp_devices_results.taskIds }}"
+      when:
+        - cvp_devices_results.taskIds | length > 0
