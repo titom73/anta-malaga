@@ -65,3 +65,10 @@ export ANTA_ENABLE=false
 ## Hackathon script
 
 Please visit [script slides](https://hackathon.anta.ninja/) to start event !
+
+> A PDF version of slides is available on [github](https://github.com/titom73/anta-malaga/blob/gh-pages/hackathon.pdf)
+
+
+## License
+
+Repository is provided AS-IS with no maintenance and under Apache-2.0 license

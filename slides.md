@@ -352,6 +352,8 @@ Develop a test based on `AntaTemplate` to validate number of connected routes in
 - VRF name is an template input for your test.
 - Run ANTA to check routes status and fix configuration in EOS.
 
+And a complete test catalog to hilight the root cause.
+
 ![bg left:40%](imgs/anta-chrono-02.jpeg)
 
 ---
