@@ -238,6 +238,8 @@ AntaCommand(
 ```
 Rendering [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances will be discussed later.
 
+> Useful tip: use `<EOS command> | json revision <number>` in EOS CLI to see the JSON output of a specific command revision
+
 ---
 # Developing tests with ANTA
 
@@ -258,6 +260,139 @@ class VerifyTemperature(AntaTest):
 > Useful tip: when coding this method, use `<EOS command> | json` in EOS CLI to see the JSON output of the command to being parsed
 
 **That's it! We've just reviwed a simple test in ANTA.**
+
+---
+# Developing tests with ANTA
+
+Now, we would like to define a test that have inputs. Let's consider the following test catalog:
+
+```yaml
+anta.tests.software:
+  - VerifyEOSVersion:
+      versions:
+        - 4.29.5M
+        - 4.30.2F
+```
+
+In the `VerifyEOSVersion` class, we need to define the test inputs by defining a subclass of `AntaTest.Input`:
+
+```python
+class VerifyEOSVersion(AntaTest):
+    """
+    Verifies the device is running one of the allowed EOS version.
+    """
+    class Input(AntaTest.Input):
+        versions: list[str]
+        """List of allowed EOS versions"""
+```
+
+`AntaTest.Input` is actually a [pydantic model](https://docs.pydantic.dev/latest/concepts/models/) which means that its field types are validated at runtime.
+
+Now, we can use the input values in the `test()` method using the `self.inputs` instance attribute:
+
+```python
+class VerifyEOSVersion(AntaTest):
+    @AntaTest.anta_test
+    def test(self) -> None:
+        command_output = self.instance_commands[0].json_output
+        if command_output["version"] in self.inputs.versions:
+            self.result.is_success()
+        else:
+            self.result.is_failure(f'device is running version {command_output["version"]} not in expected versions: {self.inputs.versions}')
+```
+
+---
+# Developing tests with ANTA
+
+What if we we want to use a command that have input values?
+Let's review how to implement a ping test:
+
+```python
+from ipaddress import IPv4Address  # Types can be any Python class
+from anta.custom_types import Interface  # anta.custom_types module defines some useful types to use in test
+
+class VerifyReachability(AntaTest):
+    commands = [AntaTemplate(template="ping vrf {vrf} {destination} source {source} repeat {repeat}")]
+
+    class Input(AntaTest.Input):
+        hosts: list[Host]
+        """List of hosts to ping"""
+
+        class Host(BaseModel):  # This class 
+            """Remote host to ping"""
+
+            destination: IPv4Address
+            """IPv4 address to ping"""
+            source: IPv4Address | Interface
+            """IPv4 address source IP or Egress interface to use"""
+            vrf: str = "default"
+            """VRF context"""
+            repeat: int = 2
+            """Number of ping repetition"""
+
+    def render(self, template: AntaTemplate) -> list[AntaCommand]:
+        return [template.render(destination=host.destination, source=host.source, vrf=host.vrf, repeat=host.repeat) for host in self.inputs.hosts]
+```
+
+---
+# Developing tests with ANTA
+
+```python
+from ipaddress import IPv4Address  # Types can be any Python class
+from anta.custom_types import Interface  # anta.custom_types module defines some useful types to use in test
+
+class VerifyReachability(AntaTest):
+    class Input(AntaTest.Input):
+        hosts: list[Host]
+        """List of hosts to ping"""
+
+        class Host(BaseModel):  # BaseModel is a pydantic model
+            """Remote host to ping"""
+
+            destination: IPv4Address
+            """IPv4 address to ping"""
+            source: IPv4Address | Interface
+            """IPv4 address source IP or Egress interface to use"""
+            vrf: str = "default"
+            """VRF context"""
+            repeat: int = 2
+            """Number of ping repetition"""
+```
+
+### Defining complex types
+
+To define an input field type, you can use any Python built-in types. Also refer to the [pydantic documentation](https://docs.pydantic.dev/latest/usage/types/types/) about types for more complex typing like constraints on strings or integers.
+You can also leverage [anta.custom_types](../api/types.md) that provides reusable types defined in ANTA tests.
+
+Regarding required, optional and nullable fields, refer to this [documentation](https://docs.pydantic.dev/latest/migration/#required-optional-and-nullable-fields) on how to define them.
+
+---
+# Developing tests with ANTA
+
+```python
+class VerifyReachability(AntaTest):
+    commands = [AntaTemplate(template="ping vrf {vrf} {destination} source {source} repeat {repeat}")]
+
+    def render(self, template: AntaTemplate) -> list[AntaCommand]:
+        return [template.render(destination=host.destination, source=host.source, vrf=host.vrf, repeat=host.repeat) for host in self.inputs.hosts]
+```
+
+### Define an `AntaTemplate` object
+```python
+AntaTemplate(
+    template="<Python f-string to render an EOS command>",
+    ofmt="<eAPI output - json or text - default is json>",
+    version="<eAPI version - valid values are 1 or “latest” - default is “latest”>",
+    revision="<eAPI revision of the command. Valid values are 1 to 99. Revision has precedence over version>"
+)
+```
+
+### Rendering `AntaTemplate` objects
+[render(self, template: AntaTemplate) -> list[AntaCommand]](../api/models.md#anta.models.AntaTest.render) is a method that needs to be implemented if [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances are present in the `commands` class attribute.
+
+It will be called for every [AntaTemplate](../api/models.md#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) using the [AntaTemplate.render()](../api/models.md#anta.models.AntaTemplate.render) method.
+
+It can access test inputs using the `inputs` instance attribute.
 
 ---
 # Fun with ANTA
