@@ -11,6 +11,7 @@ export LABPASSPHRASE=`cat /home/coder/.config/code-server/config.yaml| grep "pas
 ### Ansible content
 
 ```bash
+pip install --upgrade pip
 pip install --upgrade ansible
 ansible-galaxy collection install -f arista.avd
 ```

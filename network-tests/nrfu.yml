@@ -1,14 +1,2 @@
 ---
-anta.tests.interfaces:
-  - VerifyInterfaceUtilization:
-  - VerifyInterfaceErrors:
-  - VerifyInterfaceDiscards:
-  - VerifyInterfaceErrDisabled:
-  - VerifyInterfacesStatus:
-      interfaces:
-        - interface: Ethernet4
-          state: up
-          protocol_status: up
-        - interface: Ethernet5
-          state: up
-          protocol_status: up
+# Test catalog here

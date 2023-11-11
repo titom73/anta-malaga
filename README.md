@@ -19,6 +19,7 @@ Please follow [this documentation](./docs/provisioning.md) to build lab for the 
 Please install ANTA from pypi servers:
 
 ```bash
+pip install --upgrade pip
 pip install --upgrade 'anta==0.10.0'
 ```
 
