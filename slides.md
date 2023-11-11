@@ -38,6 +38,9 @@ style: |
       font-family: Brush Script MT;
       font-size: 14px;
     }
+    code {
+      color: #FFFFFF;
+    }
 ---
 # Introduction to ANTA
 
@@ -58,7 +61,7 @@ _paginate: false
 footer: 'Arista EMEA ANTA Hackathon - 2023'
 -->
 
-## Pre-requisite: Object Oriented Programming 
+## Pre-requisite: Object Oriented Programming
 - [Python OOP Tutorial 1: Classes and Instances](https://www.youtube.com/watch?v=ZDa-Z5JzLYM)
 - [Python OOP Tutorial 2: Class Variables](https://www.youtube.com/watch?v=BJ-VvGyQxho)
 - [Python OOP Tutorial 4: Inheritance](https://www.youtube.com/watch?v=RSl87lqOXDE)
