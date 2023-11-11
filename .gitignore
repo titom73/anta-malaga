@@ -255,3 +255,14 @@ cython_debug/
 atd-inventory/clab-anta-hackathon
 atd-inventory/.anta.clab.yml.bak
 atd-inventory/clab-anta-hackathon/**
+
+# ignore clab files
+clab-*
+*.bak
+
+# ingnore images and other files not to be uploaded to GitHub
+.gitignored/*
+!.gitignored/README.md
+
+# ignore avd backups
+config_backup

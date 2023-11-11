@@ -1,0 +1,61 @@
+name: simple-avd-lab
+prefix: ""
+
+mgmt:
+  network: custom_mgmt
+  ipv4-subnet: 192.168.0.0/24
+
+topology:
+  kinds:
+    ceos:
+      enforce-startup-config: true
+      image: ceos-lab:latest
+  defaults:
+    kind: ceos
+  nodes:
+    # site1 only
+    s1-spine1:
+      startup-config: init-configs/s1-spine1.cfg
+      mgmt-ipv4: 192.168.0.10
+    s1-spine2:
+      startup-config: init-configs/s1-spine2.cfg
+      mgmt-ipv4: 192.168.0.11
+    s1-leaf1:
+      startup-config: init-configs/s1-leaf1.cfg
+      mgmt-ipv4: 192.168.0.12
+    s1-leaf2:
+      startup-config: init-configs/s1-leaf2.cfg
+      mgmt-ipv4: 192.168.0.13
+    s1-leaf3:
+      startup-config: init-configs/s1-leaf3.cfg
+      mgmt-ipv4: 192.168.0.14
+    s1-leaf4:
+      startup-config: init-configs/s1-leaf4.cfg
+      mgmt-ipv4: 192.168.0.15
+    s1-host1:
+      startup-config: init-configs/s1-host1.cfg
+      mgmt-ipv4: 192.168.0.16
+    s1-host2:
+      startup-config: init-configs/s1-host2.cfg
+      mgmt-ipv4: 192.168.0.17
+
+  links:
+  # leaf to spine
+  - endpoints: ["s1-leaf1:eth2", "s1-spine1:eth2"]
+  - endpoints: ["s1-leaf1:eth3", "s1-spine2:eth2"]
+  - endpoints: ["s1-leaf2:eth2", "s1-spine1:eth3"]
+  - endpoints: ["s1-leaf2:eth3", "s1-spine2:eth3"]
+  - endpoints: ["s1-leaf3:eth2", "s1-spine1:eth4"]
+  - endpoints: ["s1-leaf3:eth3", "s1-spine2:eth4"]
+  - endpoints: ["s1-leaf4:eth2", "s1-spine1:eth5"]
+  - endpoints: ["s1-leaf4:eth3", "s1-spine2:eth5"]
+  # leaf to leaf
+  - endpoints: ["s1-leaf1:eth1", "s1-leaf2:eth1"]
+  - endpoints: ["s1-leaf1:eth6", "s1-leaf2:eth6"]
+  - endpoints: ["s1-leaf3:eth1", "s1-leaf4:eth1"]
+  - endpoints: ["s1-leaf3:eth6", "s1-leaf4:eth6"]
+  # leaf to host
+  - endpoints: ["s1-leaf1:eth4", "s1-host1:eth1"]
+  - endpoints: ["s1-leaf2:eth4", "s1-host1:eth2"]
+  - endpoints: ["s1-leaf3:eth4", "s1-host2:eth1"]
+  - endpoints: ["s1-leaf4:eth4", "s1-host2:eth2"]

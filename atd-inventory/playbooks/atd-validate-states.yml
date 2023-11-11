@@ -7,6 +7,7 @@
     - arista.avd
   vars:
     use_anta: True
+    # save_catalog: True
   tasks:
     - name: Deploy configuration to device
       import_role:

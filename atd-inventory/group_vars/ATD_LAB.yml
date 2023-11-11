@@ -20,3 +20,10 @@ name_servers:
 #     sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
 
 dns_domain: atd.lab
+
+# Local Users
+local_users:
+  - name: arista
+    privilege: 15
+    role: network-admin
+    sha512_password: "{{ lookup('env', 'LABPASSPHRASE') | password_hash(rounds=5000) }}"
