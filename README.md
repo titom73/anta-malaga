@@ -25,7 +25,7 @@ Please install ANTA from pypi servers:
 
 ```bash
 pip install --upgrade pip
-pip install --upgrade 'anta==0.10.0'
+pip install --upgrade 'anta==0.11.0'
 ```
 
 ## Authentication
@@ -49,7 +49,7 @@ export ANTA_PASSWORD=${LABPASSPHRASE}
 export ANTA_ENABLE=false
 ```
 
-> More information about these commandes [are availble](https://www.anta.ninja/v0.10.0/cli/overview/)
+> More information about these commandes [are availble](https://www.anta.ninja/v0.11.0/cli/overview/)
 
 ## Management IPs
 

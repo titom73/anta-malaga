@@ -176,9 +176,9 @@ A: Run a subset of the test catalog on tagged devices. Refer to [the documentati
 ---
 # Developing tests with ANTA
 
-> To go into more details, refer to [this documentation](https://www.anta.ninja/v0.10.0/advanced_usages/custom-tests/)
+> To go into more details, refer to [this documentation](https://www.anta.ninja/v0.11.0/advanced_usages/custom-tests/)
 
-ANTA provides an abstract class [AntaTest](https://www.anta.ninja/v0.10.0/api/models/#anta.models.AntaTest). This class does the heavy lifting and provide the logic to define, collect and test data. A test in ANTA is an implementation of **AntaTest** where mandatory **class variables** and at least a **method** need to be defined:
+ANTA provides an abstract class [AntaTest](https://www.anta.ninja/v0.11.0/api/models/#anta.models.AntaTest). This class does the heavy lifting and provide the logic to define, collect and test data. A test in ANTA is an implementation of **AntaTest** where mandatory **class variables** and at least a **method** need to be defined:
 
 ``` python
 from anta.models import AntaTest, AntaCommand
@@ -313,10 +313,10 @@ Test your fabric to check:
 __That’s all folks!__
 
 Use your brain and RTFM:
-- [Use Inventory & Catalog](https://www.anta.ninja/v0.10.0/usage-inventory-catalog/)
-- [ANTA CLI overview](https://www.anta.ninja/v0.10.0/cli/overview/)
-- [Get Inventory Information](https://www.anta.ninja/v0.10.0/cli/get-inventory-information/)
-- [ANTA Tests catalog](https://www.anta.ninja/v0.10.0/api/tests/)
+- [Use Inventory & Catalog](https://www.anta.ninja/v0.11.0/usage-inventory-catalog/)
+- [ANTA CLI overview](https://www.anta.ninja/v0.11.0/cli/overview/)
+- [Get Inventory Information](https://www.anta.ninja/v0.11.0/cli/get-inventory-information/)
+- [ANTA Tests catalog](https://www.anta.ninja/v0.11.0/api/tests/)
 
 ![bg left](imgs/ant-chrono-3.jpeg)
 
@@ -348,7 +348,7 @@ Traffic is still not passing correctly. Check that all connected routes are corr
 
 Develop a test based on `AntaTemplate` to validate number of connected routes in VRFs:
 
-- Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/v0.10.0/api/models/#template-definition)
+- Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/v0.11.0/api/models/#template-definition)
 - VRF name is an template input for your test.
 - Run ANTA to check routes status and fix configuration in EOS.
 
