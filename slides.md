@@ -167,10 +167,10 @@ anta.tests.mlag:
         tags: ['leaf']
 ```
 
-Q: What are the tests available in ANTA?
+_Q: What are the tests available in ANTA?_
 A: Refer to the [API Documentation](https://www.anta.ninja/main/api/tests/) or this [test catalog example](https://github.com/arista-netdevops-community/anta/blob/main/examples/tests.yaml).
 
-Q: What is the purpose of tags?
+_Q: What is the purpose of tags?_
 A: Run a subset of the test catalog on tagged devices. Refer to [the documentation](https://www.anta.ninja/main/cli/tag-management/) for more details.
 
 ---
@@ -225,7 +225,7 @@ class VerifyTemperature(AntaTest):
 - `name` (`str`): Name of the test. Used during reporting.
 - `description` (`str`): A human readable description of your test.
 - `categories` (`list[str]`): A list of categories in which the test belongs.
-- `commands` (`list[Union[AntaTemplate, AntaCommand]]`): A list of command to collect from devices. This list __must__ be a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) or [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances.
+- `commands` (`list[Union[AntaTemplate, AntaCommand]]`): A list of commands to collect from devices. This list __must__ be a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) or [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances.
 
 ### Define an `AntaCommand` object
 ```python
@@ -257,9 +257,10 @@ class VerifyTemperature(AntaTest):
 
 ### Coding the test
 [test(self) -> None](../api/models.md#anta.models.AntaTest.test) is an abstract method that must be implemented. It contains the test logic that can access the collected command outputs using the `instance_commands` instance attribute and __must__ set the `result` instance attribute accordingly. It must be implemented using the `AntaTest.anta_test` decorator that provides logging and will collect commands before executing the `test()` method.
-> Useful tip: when coding this method, use `<EOS command> | json` in EOS CLI to see the JSON output of the command to being parsed
+> Useful tip: when coding this method, use `<EOS command> | json` in EOS CLI to see the JSON output of the command to being parsed.
+> You can also use `anta debug run-cmd --device <EOS inventory device> --command "<EOS command>"`
 
-**That's it! We've just reviwed a simple test in ANTA.**
+**That's it! We've just reviewed a simple test in ANTA.**
 
 ---
 # Developing tests with ANTA
@@ -398,8 +399,8 @@ It can access test inputs using the `inputs` instance attribute.
 
 # Big Shoutout !
 
-- Colin & Paul for initial set of scripts
-- Angelique, Onur, Khelil for building initial framework with EDF
+- __Colin__ & __Paul__ for initial set of scripts
+- __Angelique__, __Onur__, __Khelil__ for building initial framework with EDF
 
 ![bg right](imgs/shoutout.jpeg)
 
