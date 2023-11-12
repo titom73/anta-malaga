@@ -44,7 +44,7 @@ If you want to not provide username and password to ANTA for each execution, you
 
 ```bash
 echo 'Creating default anta variables'
-export ANTA_USERNAME=ansible
+export ANTA_USERNAME=arista
 export ANTA_PASSWORD=${LABPASSPHRASE}
 export ANTA_ENABLE=false
 ```
