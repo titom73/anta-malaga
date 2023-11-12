@@ -1,7 +1,5 @@
 # Arista Network Testing Automation (ANTA) Hackathon
 
-__WIP__ - Documentation is not accurate anymore! Please update it !
-
 This repository is built to support demo about how to use [Arista Network Testing Automation](https://www.anta.ninja) framework.
 
 ## Lab environment

@@ -51,7 +51,7 @@ _paginate: false
 
 <style scoped>section {font-size: 28px;}</style>
 
-
+![bg left](imgs/welcome.jpeg)
 
 ---
 # Objectives and pre-requisites
