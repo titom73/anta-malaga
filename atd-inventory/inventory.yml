@@ -4,7 +4,7 @@ all:
     cv_servers:
       hosts:
         cv_atd1:
-          ansible_host: anta-malaga-preparation-1-c6a0682b-eos.topo.testdrive.arista.com
+          ansible_host: 192.168.0.5
           cv_collection: v3
     ATD_LAB:
       children:
