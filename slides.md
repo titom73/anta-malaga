@@ -318,7 +318,7 @@ class VerifyReachability(AntaTest):
         hosts: list[Host]
         """List of hosts to ping"""
 
-        class Host(BaseModel):  # This class 
+        class Host(BaseModel):  # This class
             """Remote host to ping"""
 
             destination: IPv4Address
@@ -393,6 +393,15 @@ AntaTemplate(
 It will be called for every [AntaTemplate](../api/models.md#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) using the [AntaTemplate.render()](../api/models.md#anta.models.AntaTemplate.render) method.
 
 It can access test inputs using the `inputs` instance attribute.
+
+---
+
+# Big Shoutout !
+
+- Colin & Paul for initial set of scripts
+- Angelique, Onur, Khelil for building initial framework with EDF
+
+![bg right](imgs/shoutout.jpeg)
 
 ---
 # Fun with ANTA
