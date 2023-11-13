@@ -12,7 +12,7 @@ This repository is built to support demo about how to use [Arista Network Testin
 
 Please follow [this documentation](./docs/provisioning.md) to build lab for the hackathon session. It is based on Arista Test Drive.
 
-A version using devcontainer and containerlab is available under [`devcontainer` branch of this repository](https://github.com/titom73/anta-malaga/tree/devcontainer) and built by [Petr Ankudinov](https://github.com/ankudinov). It means you can run it using codespace if required.
+A version using devcontainer and containerlab is available under [`devcontainer` version of of this repository](https://github.com/ankudinov/anta-malaga) and built by [Petr Ankudinov](https://github.com/ankudinov). It means you can run it using codespace if required.
 
 > **Note**
 > For SE Meeting, only ATD approach is supported to spend a maximum of time running tests and not debugging setups. You can use other approaches if you know what you are doing.
