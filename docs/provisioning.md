@@ -1,5 +1,15 @@
 # Lab Provisioning
 
+## Get repository content
+
+```bash
+# Clone repository
+git clone https://github.com/titom73/anta-malaga.git
+
+# Move to repository
+cd anta-malaga
+```
+
 ## Save Lab Credential
 
 ```bash
