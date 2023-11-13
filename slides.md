@@ -513,6 +513,21 @@ __Stage is yours !__
 
 ---
 
+# ANTA Environment in a Dev Container
+
+- Hackathon repo includes a dev container with AVD, ANTA and Containerlab pre-installed.
+- Set ARTOKEN environment variable first to download cEOS image inside the container. Or add it as a bind mount.
+- Simply clone the repository in VSCode to start a devcontainer. You'll need Docker Desktop and VSCode Dev Containers extension installed.
+- Investigate the environment yourself. It's a hackathon. 😄
+- This will not work on ARM-base MacBooks, sorry! There is no image to pull. But! You can run the container as Github Codespace.
+- Feel free to ask questions, but not for support! Dev Container has a lot of benefits, but ATD is the only supported option.
+
+> BREAKING NEWS: AVD Dev Containers preview is coming soon (you can already pull some). Let's build more demos, hackathons, examples, POCs, workshops, etc. for us and our customers!
+
+![bg left](imgs/docker-kanagawa.jpeg)
+
+---
+
 # Conclusion
 
 - How do you think you can use ANTA in the field ?
