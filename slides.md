@@ -221,7 +221,7 @@ Let's review step by step how this test has been written.
 
 ---
 # Developing tests with ANTA - Hello World
-
+## Mandatory class attributes
 ``` python
 class VerifyTemperature(AntaTest):
     name = "VerifyTemperature"
@@ -229,8 +229,6 @@ class VerifyTemperature(AntaTest):
     categories = ["hardware"]
     commands = [AntaCommand(command="show system environment temperature", ofmt="json")]
 ```
-
-### Mandatory class attributes
 - `name` (`str`): Name of the test. Used during reporting.
 - `description` (`str`): A human readable description of your test.
 - `categories` (`list[str]`): A list of categories in which the test belongs.
@@ -251,7 +249,7 @@ Rendering [AntaTemplate](https://www.anta.ninja/stable/api/models#anta.models.An
 
 ---
 # Developing tests with ANTA - Hello World
-
+## Coding the test
 ``` python
 class VerifyTemperature(AntaTest):
     @AntaTest.anta_test
@@ -263,11 +261,11 @@ class VerifyTemperature(AntaTest):
         else:
             self.result.is_failure(f"Device temperature exceeds acceptable limits. Current system status: '{temperature_status}'")
 ```
-
-### Coding the test
 [test(self) -> None](https://www.anta.ninja/stable/api/models#anta.models.AntaTest.test) is an abstract method that must be implemented. It contains the test logic that can access the collected command outputs using the `instance_commands` instance attribute and __must__ set the `result` instance attribute accordingly. It must be implemented using the `AntaTest.anta_test` decorator that provides logging and will collect commands before executing the `test()` method.
 > Useful tip: when coding this method, use `<EOS command> | json` in EOS CLI to see the JSON output of the command to being parsed.
 > You can also use `anta debug run-cmd --device <EOS inventory device> --command "<EOS command>"`
+
+> You can use the `self.logger` instance attribute to log things to the user. E.g. `self.logger.info('Hello World')`
 
 **That's it! We've just reviewed a simple test in ANTA.**
 
@@ -296,7 +294,7 @@ class VerifyEOSVersion(AntaTest):
         """List of allowed EOS versions"""
 ```
 
-`AntaTest.Input` is actually a [pydantic model](https://docs.pydantic.dev/latest/concepts/models/) which means that its field types are validated at runtime.
+`AntaTest.Input` is actually a [pydantic model](https://docs.pydantic.dev/latest/concepts/models/) which means that its field types are validated at runtime. **You do not need to write any code to validate user inputs!**
 
 Now, we can use the input values in the `test()` method using the `self.inputs` instance attribute:
 
@@ -352,7 +350,7 @@ anta.tests.connectivity:
 
 ---
 # Developing tests with ANTA - Inputs
-
+## Defining complex types
 ```python
 from ipaddress import IPv4Address  # Types can be any Python class
 from anta.custom_types import Interface  # anta.custom_types module defines some useful types to use in test
@@ -374,16 +372,12 @@ class VerifyReachability(AntaTest):
             repeat: int = 2
             """Number of ping repetition"""
 ```
-
-### Defining complex types
-
 - To define an input field type, you can use any Python built-in types. Also refer to the [pydantic documentation](https://docs.pydantic.dev/latest/usage/types/types/) about types for more complex typing like constraints on strings or integers.
 - You can also leverage [anta.custom_types](https://www.anta.ninja/stable/api/types) that provides reusable types defined in ANTA tests.
 - Regarding required, optional and nullable fields, refer to this [documentation](https://docs.pydantic.dev/latest/migration/#required-optional-and-nullable-fields) on how to define them.
 
 ---
 # Developing tests with ANTA - Templates
-
 ## What if we we want to render a command using input values?
 
 ### Define an `AntaTemplate` object
@@ -398,8 +392,8 @@ AntaTemplate(
 ```
 An `AntaTemplate` object must have a Python f-string defined as `template` class attribute. The object has a [AntaTemplate.render(**params: dict[str, Any]) -> AntaCommand](https://www.anta.ninja/stable/api/models/#anta.models.AntaTemplate.render) method to get an `AntaCommand` object from the template parameters.
 
-### Rendering `AntaTemplate` objects
-[AntaTest.render(self, template: AntaTemplate) -> list[AntaCommand]](https://www.anta.ninja/stable/api/models#anta.models.AntaTest.render) is a method that needs to be implemented if [AntaTemplate](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate) instances are present in the `commands` class attribute. It will be called for every [AntaTemplate](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](https://www.anta.ninja/stable/api/models#anta.models.AntaCommand) using the [AntaTemplate.render()](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate.render) method. It can access test inputs using the `inputs` instance attribute.
+### Render an `AntaTemplate` object
+[AntaTest.render(self, template: AntaTemplate) -> list[AntaCommand]](https://www.anta.ninja/stable/api/models#anta.models.AntaTest.render) is a method that needs to be implemented if [AntaTemplate](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate) instances are present in the `commands` class attribute. It will be called for every [AntaTemplate](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](https://www.anta.ninja/stable/api/models#anta.models.AntaCommand) using the [AntaTemplate.render()](https://www.anta.ninja/stable/api/models#anta.models.AntaTemplate.render) method. It can access test inputs using the `self.inputs` instance attribute. The returned value will extend the `self.instance_commands` instance attribute.
 
 ```python
 class VerifyReachability(AntaTest):
@@ -411,8 +405,7 @@ class VerifyReachability(AntaTest):
 
 ---
 # ANTA Test Execution Sequence
-
-### What happen when the `anta nrfu` command is run?
+## What happen when the `anta nrfu` command is run?
 
 1. ANTA will **parse and validate** the device inventory.
 
