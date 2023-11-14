@@ -44,6 +44,8 @@ style: |
 ---
 # Introduction to ANTA
 
+_Read, test and code !_
+
 <!-- Do not add page number on this slide -->
 <!--
 _paginate: false
@@ -92,6 +94,8 @@ footer: 'Arista EMEA ANTA Hackathon - 2023'
 ### Easy setup
   - `pip install anta`
   - Docker image: `ghcr.io/arista-netdevops-community/anta`
+
+![bg right](./imgs/nutshell.jpeg)
 
 ---
 # Big Shoutout !
@@ -451,7 +455,7 @@ _footer: ''
 
 ![bg right:33%](imgs/pexels-suzy-hazelwood-1226398.jpg)
 
-- This hackathon is split into 3 sections. Each section takes around 20 minutes to complete. But it can takes more time if you are running it on your own.
+- This hackathon is split into 4 sections. Each section takes around 20 minutes to complete. But it can takes more time if you are running it on your own.
 - Work in team, only one submission per team
 - Repository is available at [titom73/anta-malaga](https://github.com/titom73/anta-malaga)
 - An Arista Test Drive is required.
