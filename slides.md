@@ -451,8 +451,9 @@ _footer: ''
 - This hackathon is split into 4 sections. Each section takes around 20 minutes to complete. But it can takes more time if you are running it on your own.
 - Work in team, only one submission per team
 - Repository is available at [titom73/anta-malaga](https://github.com/titom73/anta-malaga)
-- An Arista Test Drive is required.
+- An Arista Test Drive is required
 - Google Chat: [#anta-field](https://chat.google.com/room/AAAAN780xDU?cls=7) on Google Chat
+- Slides: https://hackathon.anta.ninja/
 
 
 > If you find something weird or have suggestions, do not hesitate to [open an issue](https://github.com/arista-netdevops-community/anta/issues) to provide feedbacks
