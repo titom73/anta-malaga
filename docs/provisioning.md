@@ -3,6 +3,9 @@
 ## Get repository content
 
 ```bash
+# Move to persistent storage
+cd labfiles/
+
 # Clone repository
 git clone https://github.com/titom73/anta-malaga.git
 
