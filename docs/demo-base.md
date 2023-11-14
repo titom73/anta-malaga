@@ -4,20 +4,6 @@
 
 ### Initial steps
 
-* download cEOS in version 4.28.3M
-
-```bash
-ardl --token <arista.com token> get eos --version 4.28.3M --image-type cEOS --import-docker
-```
-
-* Start initial topology
-
-```bash
-cd containerlab-topology
-sudo containerlab deploy --topo topology.yml --reconfigure
-cd ..
-```
-
 * Review ANTA parameters available in [`.envrc`](../.envrc)
 
 ```bash
