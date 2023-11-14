@@ -94,6 +94,15 @@ footer: 'Arista EMEA ANTA Hackathon - 2023'
   - Docker image: `ghcr.io/arista-netdevops-community/anta`
 
 ---
+# Big Shoutout !
+
+- __Colin__ & __Paul__ for initial set of scripts
+- __Angelique__, __Onur__, __Khelil__ for building initial framework with EDF
+
+![bg right](imgs/shoutout.jpeg)
+
+
+---
 # ANTA CLI
 
 ![anta nrfu](https://raw.githubusercontent.com/arista-netdevops-community/anta/main/docs/imgs/anta-nrfu.svg)
@@ -168,17 +177,17 @@ anta.tests.mlag:
 ```
 
 _Q: What are the tests available in ANTA?_
-A: Refer to the [API Documentation](https://www.anta.ninja/main/api/tests/) or this [test catalog example](https://github.com/arista-netdevops-community/anta/blob/main/examples/tests.yaml).
+A: Refer to the [API Documentation](https://www.anta.ninja/stable/api/tests/) or this [test catalog example](https://github.com/arista-netdevops-community/anta/blob/main/examples/tests.yaml).
 
 _Q: What is the purpose of tags?_
-A: Run a subset of the test catalog on tagged devices. Refer to [the documentation](https://www.anta.ninja/main/cli/tag-management/) for more details.
+A: Run a subset of the test catalog on tagged devices. Refer to [the documentation](https://www.anta.ninja/stable/cli/tag-management/) for more details.
 
 ---
 # Developing tests with ANTA
 
-> To go into more details, refer to [this documentation](https://www.anta.ninja/v0.11.0/advanced_usages/custom-tests/)
+> To go into more details, refer to [this documentation](https://www.anta.ninja/stable/advanced_usages/custom-tests/)
 
-ANTA provides an abstract class [AntaTest](https://www.anta.ninja/v0.11.0/api/models/#anta.models.AntaTest). This class does the heavy lifting and provide the logic to define, collect and test data. A test in ANTA is an implementation of **AntaTest** where mandatory **class variables** and at least a **method** need to be defined:
+ANTA provides an abstract class [AntaTest](https://www.anta.ninja/stable/api/models/#anta.models.AntaTest). This class does the heavy lifting and provide the logic to define, collect and test data. A test in ANTA is an implementation of **AntaTest** where mandatory **class variables** and at least a **method** need to be defined:
 
 ``` python
 from anta.models import AntaTest, AntaCommand
@@ -225,7 +234,7 @@ class VerifyTemperature(AntaTest):
 - `name` (`str`): Name of the test. Used during reporting.
 - `description` (`str`): A human readable description of your test.
 - `categories` (`list[str]`): A list of categories in which the test belongs.
-- `commands` (`list[Union[AntaTemplate, AntaCommand]]`): A list of commands to collect from devices. This list __must__ be a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) or [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances.
+- `commands` (`list[Union[AntaTemplate, AntaCommand]]`): A list of commands to collect from devices. This list __must__ be a list of [AntaCommand](https://www.anta.ninja/stable/api/models.md#anta.models.AntaCommand) or [AntaTemplate](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTemplate) instances.
 
 ### Define an `AntaCommand` object
 ```python
@@ -236,7 +245,7 @@ AntaCommand(
     revision="<eAPI revision of the command. Valid values are 1 to 99. Revision has precedence over version>"
 )
 ```
-Rendering [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances will be discussed later.
+Rendering [AntaTemplate](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTemplate) instances will be discussed later.
 
 > Useful tip: use `<EOS command> | json revision <number>` in EOS CLI to see the JSON output of a specific command revision
 
@@ -256,7 +265,7 @@ class VerifyTemperature(AntaTest):
 ```
 
 ### Coding the test
-[test(self) -> None](../api/models.md#anta.models.AntaTest.test) is an abstract method that must be implemented. It contains the test logic that can access the collected command outputs using the `instance_commands` instance attribute and __must__ set the `result` instance attribute accordingly. It must be implemented using the `AntaTest.anta_test` decorator that provides logging and will collect commands before executing the `test()` method.
+[test(self) -> None](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTest.test) is an abstract method that must be implemented. It contains the test logic that can access the collected command outputs using the `instance_commands` instance attribute and __must__ set the `result` instance attribute accordingly. It must be implemented using the `AntaTest.anta_test` decorator that provides logging and will collect commands before executing the `test()` method.
 > Useful tip: when coding this method, use `<EOS command> | json` in EOS CLI to see the JSON output of the command to being parsed.
 > You can also use `anta debug run-cmd --device <EOS inventory device> --command "<EOS command>"`
 
@@ -275,7 +284,7 @@ anta.tests.software:
         - 4.30.2F
 ```
 
-In the `VerifyEOSVersion` class, we need to define the test inputs by defining a subclass of `AntaTest.Input`:
+In the `VerifyEOSVersion` class, we need to define the test inputs by defining a subclass of `AntaTest.Input` called `Input` under the `VerifyEOSVersion` class:
 
 ```python
 class VerifyEOSVersion(AntaTest):
@@ -305,7 +314,7 @@ class VerifyEOSVersion(AntaTest):
 ---
 # Developing tests with ANTA
 
-What if we we want to use a command that have input values?
+### What if we we want to render a command using input values?
 Let's review how to implement a ping test:
 
 ```python
@@ -338,6 +347,45 @@ class VerifyReachability(AntaTest):
 ---
 # Developing tests with ANTA
 
+Let's review the `VerifyReachability.Input` class:
+```python
+from ipaddress import IPv4Address  # Types can be any Python class
+from anta.custom_types import Interface  # anta.custom_types module defines some useful types to use in test
+
+class VerifyReachability(AntaTest):
+    class Input(AntaTest.Input):
+        hosts: list[Host]
+        """List of hosts to ping"""
+
+        class Host(BaseModel):  # BaseModel is a pydantic model
+            """Remote host to ping"""
+
+            destination: IPv4Address
+            """IPv4 address to ping"""
+            source: IPv4Address | Interface
+            """IPv4 address source IP or Egress interface to use"""
+            vrf: str = "default"
+            """VRF context"""
+            repeat: int = 2
+            """Number of ping repetition"""
+```
+
+The following catalog defines a valid `VerifyReachability` test:
+```yaml
+anta.tests.connectivity:
+  - VerifyReachability:
+      hosts:
+        - source: Management0
+          destination: 1.1.1.1
+          vrf: MGMT
+        - source: Management0
+          destination: 8.8.8.8
+          vrf: MGMT
+```
+
+---
+# Developing tests with ANTA
+
 ```python
 from ipaddress import IPv4Address  # Types can be any Python class
 from anta.custom_types import Interface  # anta.custom_types module defines some useful types to use in test
@@ -363,7 +411,7 @@ class VerifyReachability(AntaTest):
 ### Defining complex types
 
 To define an input field type, you can use any Python built-in types. Also refer to the [pydantic documentation](https://docs.pydantic.dev/latest/usage/types/types/) about types for more complex typing like constraints on strings or integers.
-You can also leverage [anta.custom_types](../api/types.md) that provides reusable types defined in ANTA tests.
+You can also leverage [anta.custom_types](https://www.anta.ninja/stable/api/types.md) that provides reusable types defined in ANTA tests.
 
 Regarding required, optional and nullable fields, refer to this [documentation](https://docs.pydantic.dev/latest/migration/#required-optional-and-nullable-fields) on how to define them.
 
@@ -389,20 +437,15 @@ AntaTemplate(
 ```
 
 ### Rendering `AntaTemplate` objects
-[render(self, template: AntaTemplate) -> list[AntaCommand]](../api/models.md#anta.models.AntaTest.render) is a method that needs to be implemented if [AntaTemplate](../api/models.md#anta.models.AntaTemplate) instances are present in the `commands` class attribute.
+[render(self, template: AntaTemplate) -> list[AntaCommand]](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTest.render) is a method that needs to be implemented if [AntaTemplate](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTemplate) instances are present in the `commands` class attribute.
 
-It will be called for every [AntaTemplate](../api/models.md#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](../api/models.md#anta.models.AntaCommand) using the [AntaTemplate.render()](../api/models.md#anta.models.AntaTemplate.render) method.
+It will be called for every [AntaTemplate](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTemplate) occurence and __must__ return a list of [AntaCommand](https://www.anta.ninja/stable/api/models.md#anta.models.AntaCommand) using the [AntaTemplate.render()](https://www.anta.ninja/stable/api/models.md#anta.models.AntaTemplate.render) method.
 
 It can access test inputs using the `inputs` instance attribute.
 
 ---
+# ANTA Test Execution Sequence
 
-# Big Shoutout !
-
-- __Colin__ & __Paul__ for initial set of scripts
-- __Angelique__, __Onur__, __Khelil__ for building initial framework with EDF
-
-![bg right](imgs/shoutout.jpeg)
 
 ---
 # Fun with ANTA
@@ -458,10 +501,10 @@ Test your fabric to check:
 __That’s all folks!__
 
 Use your brain and RTFM:
-- [Use Inventory & Catalog](https://www.anta.ninja/v0.11.0/usage-inventory-catalog/)
-- [ANTA CLI overview](https://www.anta.ninja/v0.11.0/cli/overview/)
+- [Use Inventory & Catalog](https://www.anta.ninja/stable/usage-inventory-catalog/)
+- [ANTA CLI overview](https://www.anta.ninja/stable/cli/overview/)
 - [Get Inventory Information](https://www.anta.ninja/v0.11.0/cli/get-inventory-information/)
-- [ANTA Tests catalog](https://www.anta.ninja/v0.11.0/api/tests/)
+- [ANTA Tests catalog](https://www.anta.ninja/stable/api/tests/)
 
 ![bg left](imgs/ant-chrono-3.jpeg)
 
@@ -493,7 +536,7 @@ Traffic is still not passing correctly. Check that all connected routes are corr
 
 Develop a test based on `AntaTemplate` to validate number of connected routes in VRFs:
 
-- Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/v0.11.0/api/models/#template-definition)
+- Test __must__ use [`anta.models.AntaTemplate`](https://www.anta.ninja/stable/api/models/#template-definition)
 - VRF name is an template input for your test.
 - Run ANTA to check routes status and fix configuration in EOS.
 
