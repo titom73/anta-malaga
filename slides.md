@@ -505,7 +505,11 @@ Develop a test to check LACP status:
 
 - Use `pip install -e .`
 - Develop your tests under `./anta_custom/<your_file>.py`
-- Your test will be available with `anta_custom.<your_file>.<your_test>`
+- Your test can be used with the following catalog:
+```yaml
+anta_custom.<your_file>:
+  - <your_test>
+```
 - [Test development example](https://github.com/titom73/atd-anta-demo/tree/main/docs)
 
 ![bg right:33%](imgs/ant-chrono.jpeg)
